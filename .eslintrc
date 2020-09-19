@@ -1,0 +1,86 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json",
+    "warnOnUnsupportedTypeScriptVersion": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "@react-native-community",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "simple-import-sort"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".ts",
+          ".jsx",
+          ".tsx",
+          ".json"
+        ]
+      }
+    }
+  },
+  "globals": {
+    "window": true,
+    "__DEV__": true
+  },
+  "rules": {
+    "@typescript-eslint/prefer-optional-chain": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "args": "none",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "camelcase": "error",
+    "no-underscore-dangle": [2, { "allow": ["__typename"] }],
+    "no-use-before-define": [
+      0
+    ],
+    "import/prefer-default-export": [
+      0
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ],
+    "prettier/prettier": "error",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".jsx",
+          ".tsx"
+        ]
+      }
+    ],
+    "react/jsx-key": ["error", { "checkFragmentShorthand": true }],
+    "react/jsx-props-no-spreading": [
+      0
+    ],
+    "react/prop-types": [
+      0
+    ],
+    "react-native/no-unused-styles": "error",
+    "simple-import-sort/sort": "error",
+  }
+}
