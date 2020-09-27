@@ -6,17 +6,46 @@ import {
   View,
 } from 'react-native';
 
-const styles = StyleSheet.create({
+const lightTheme = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
+    color: 'black',
+  },
+  label: {
+    fontSize: 32,
+    color: 'blue',
+  },
+});
+
+const darkTheme = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'gray',
+    color: 'white',
   },
   label: {
     fontSize: 32,
     color: 'red',
   },
+});
+
+type Theme = typeof lightTheme | typeof darkTheme;
+
+interface Context {
+  theme: Theme;
+  setTheme: (newTheme: Theme) => void;
+}
+
+const ThemeContext = React.createContext<Context>({
+  theme: lightTheme,
+  setTheme: (_: typeof lightTheme | typeof darkTheme) => {},
 })
+
 
 function A() {
   React.useEffect(() => {
@@ -33,12 +62,14 @@ function B() {
 }
 
 export default function App() {
+  const [theme, setTheme] = React.useState(lightTheme);
   const [needToShowA, setNeedsToShowA] = React.useState(true);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}
+    <View style={theme.container}>
+      <Text style={theme.label}
         onPress={() => {
+          setTheme(theme === lightTheme ? darkTheme :lightTheme);
           setNeedsToShowA(!needToShowA);
         }}
       >
